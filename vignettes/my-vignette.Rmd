@@ -1,0 +1,27 @@
+---
+title: "iSphereMAP"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{iSphereMAP}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This package implements the iSphereMAP estimator introduced in the paper "Shi, X., Li, X., & Cai, T. (2021). Spherical regression under mismatch corruption with application to automated knowledge translation. Journal of the American Statistical Association, 116(536), 1953-1964."
+
+A spherical regression problem will have predictor (X) and response (Y) matrices of matching dimensions such that every row in each matrix will have unit length (1). To preserve spherical property, the regression coefficient matrix in a spherical regression is required to be orthogonal.
+
+If a mismatch corruption is present, each row of the predictor matrix may not correspond to its matching row in the response matrix. Such mismatch can be modeled using a permutation matrix.
+
+$$
+Y = \Pi X W
+$$
+where $Y$ is the response, $\Pi$ is the parameter for mismatch corruption, $X$ is the predictor, and $W$ is the orthogonal regression coefficient matrix.
+
+Shi et al. (2021) proposed a three step estimator that can consistently estimate both $\Pi$ and $W$ under some model assumptions. Most importantly, the estimator requires the number of mismatch corruptions to be of $o(n)$ where $n$ is the number of observations (rows) in $X$ and mismatch corruption will only occur within known sub-groups. The group size has to be sufficiently small for the estimator to work implying that the group information has to be quite detailed. 
+
+The estimation steps in a nutshell is as follows:
+
+1. Estimate $W$ ignoring any mismatch corruption, i.e. assume $\Pi=I$.
+1. Estimate $\Pi$ based on the current estimate of $W$ with hard-thresholding.
+1. From the estimated $\Pi$ in the previous step, identify observations that are free from mismatch corruption and estimate $W$ again only using the clean observations.

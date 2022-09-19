@@ -1,0 +1,6 @@
+import(Matrix)
+importFrom(pbapply,pblapply)
+importFrom(utils, setTxtProgressBar, txtProgressBar)
+importFrom(stats,lm)
+importFrom(methods,as)
+export(is.spherical, as.spherical, iSphereMAP)

@@ -1,0 +1,18 @@
+Package: iSphereMAP
+Version: 0.1.0
+Date: 2019-04-09
+Title: A package that implements the iSPhereMAP procedure introduced by Shi et al. (2021)
+    Further information on the method and the paper is provided in the vignette.
+Author: Sungmin Park
+Maintainer: Sungmin Park <park2454@umn.edu>
+Description: The package provides three functions:
+    a function that checks whether the matrices are spherical,
+    a function that transforms an input matrix into a spherical matrix,
+    a function that implements the iSphereMAP method to spherical matrices.
+License: CC0
+Depends: R (>= 4.1.0), Matrix
+Imports: stats, methods, utils, pbapply
+Suggests: 
+    rmarkdown,
+    knitr
+VignetteBuilder: knitr
